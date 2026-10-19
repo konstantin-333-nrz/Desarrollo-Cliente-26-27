@@ -7,7 +7,7 @@ const N9 = 20;
 for (let i = 0; i < N9 - 1; i++) {
   let linea = "";
 
-  for (let j = 0; j <= i; j++) {
+  for (let j = 0; j < N9 - i; j++) {
     linea += "* ";
   }
 
