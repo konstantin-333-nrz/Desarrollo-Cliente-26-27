@@ -10,7 +10,7 @@ salida1.textContent = primeraVariable +" "+ segundaVariable + " " + nombreConst;
 
 primeraVariable = "Fiona";
 segundaVariable = 18;
-nombreConst = "04/08/2008"
+nombreConst = "04/08/2008";
 
-salida1.textContent = primeraVariable +" "+ segundaVariable + " " + nombreConst;
+salida1.textContent += primeraVariable +" "+ segundaVariable + " " + nombreConst;
 
