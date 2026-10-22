@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UD2 DOM</title>
+    <style>
+        section {
+            border: 1px solid #ddd;
+            padding: 10px 14px;
+            margin: 12px 0;
+        }
+
+        h2 {
+            margin: 0 0 10px;
+        }
+        .precio {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="contenedor">
+        <h1>Tienda - Panel</h1>
+        <section id="productos">
+            <h2>Productos</h2>
+            <ul id="lista">
+                <li id="p1">Café <span class="precio">3.50</span>€</li>
+                <li id="p2">Té <span class="precio">2.80</span> €</li>
+                <li id="p3">Cacao <span class="precio">4.00</span> €</li>
+            </ul>
+        </section>
+
+        <section id="alumnos">
+            <h2>Alumnos</h2>
+            <label><input type="checkbox" name="alumnos" /> Ana</label><br/>
+            <label><input type="checkbox" name="alumnos" /> Luis</label><br/>
+            <label><input type="checkbox" name="alumnos" /> Marta</label><br/>
+        </section>
+
+        <section>
+            <h2>Noticias</h2>
+            <p id="n1">Hoy abrimos nueva sección de infusiones.</p>
+            <p id="n2">Llegó stock de Cacao Premium.</p>
+        </section>
+
+        <section>
+            <h2>Salida</h2>
+            <div id="log"></div>
+        </section>
+    </div>
+    <script src="ej5.js"></script>
+</body>
+</html>
