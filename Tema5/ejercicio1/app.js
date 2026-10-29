@@ -12,20 +12,30 @@ const btnEliminar = document.querySelector("#btn-eliminar");
 const btnAñadir = document.querySelector("#btn-agregar");
 const inputProducto = document.querySelector("#input-producto");
 
-
+//Creamos un evento para el boton de añadir
 btnAñadir.addEventListener("click", ()=>{
+    //el texto que este en el input lo vamos a guardar y eliminar los posibles espacios alante y atrás
     const texto =inputProducto.value.trim();
     if(texto !== ""){
+        //Si el texto no esta vacío creamos el elemento li y le ponemos el contenido del input
         let elemLista = document.createElement("li");
         elemLista.textContent = texto;
+        //a la lista principal le añadimos el elemento que hemos creado
         lista.append(elemLista);
         inputProducto.value = "";
+        //Y a su vez lo añadimos al final del array
         listaCompra.push(texto);
     }
 })
 
+//Creamos el evento para el boton de eliminar
 btnEliminar.addEventListener("click", ()=>{
-    listaCompra.pop();
+    if(listaCompra.length > 0){
+        //Eliminamos el ultimo elemento del array
+        listaCompra.pop();
+        //y tambien eliminamos el ultimo elemento de la lista html que la hemos capturado con anterioridad
+        lista.lastElementChild.remove();
+    }
+});
 
-})
 
