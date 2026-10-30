@@ -1,41 +1,85 @@
-let listaCompra = ["leche","pan","huevos"];
-//Apartado 1 Mostrar la lista de a compra como un li dentro de la lista
+//Esta funcion servira para actualizar el contador cada vez que se haga una modificación
+//Y al estar en la funcion de pintar la lista será mas comodo
+function actualizarContador(){
+    const n = listaCompra.length;
+    contador.textContent = `${n} producto/s en la lista`;
+}
+
+//A la función de pintarLista le he pedido ayuda a la ia ya que tenia una estructura muy desorganizada y era imposible
+//hacer el apartado 5... 
+//Apartado 1 Mostrar la lista de la compra como un li dentro de la lista
+function pintarLista(){
+    //el texto del buscador, en minúsculas para comparar sin errores
+    const texto = buscador.value.toLowerCase();
+    //Vaciamos la lista para no duplicar elementos
+    lista.innerHTML="";
+
+    //Recorremos el array e i tiene la posicion numerica
+    listaCompra.forEach((prod,i) =>{
+        //pintamos los que tienen el texto en el contador
+        if(prod.toLowerCase().indexOf(texto) === 0){
+            let elemLista = document.createElement("li");
+            elemLista.textContent = prod;
+        
+            //Si se hace click en el producto se elimina del array
+            elemLista.addEventListener("click", ()=>{
+                listaCompra.splice(i,1);
+                pintarLista();
+            });
+            //Añadimos a la lista el elemento de la lista de no ser clickado
+            lista.append(elemLista);
+        }
+    });
+        actualizarContador();
+}
+
+//Hacemos una función para que añada el producto ya sea con enter o con el boton
+function addProducto(){
+    const textoInput = inputProducto.value.trim();
+    //Si el texto input ya esta en la lista lanzamos un alert
+    const exists = listaCompra.some(p=> p.toLowerCase() === textoInput.toLowerCase());
+    if(exists){
+        alert(`"${textoInput}" ya está en la lista`)
+    }else{
+        listaCompra.push(textoInput);
+        inputProducto.value ="";
+        pintarLista();
+    }
+    
+}
+
+
+let listaCompra = ["leche", "pan", "huevos"];
+
+//Aqui guardamos los elementos del DOM
 const lista = document.querySelector("#lista");
-//Aqui para cada producto de la lista de la compra crearemos un elemento li y lo llevaremos a la lista principal
-listaCompra.forEach(product =>{
-    let elemLista = document.createElement("li");
-    elemLista.textContent = product;
-    lista.append(elemLista);
-})
-//Apartado 2 Añadir e eliminar productos(Hacer que los botones funcionen)
+const btnAdd = document.querySelector("#btn-agregar");
 const btnEliminar = document.querySelector("#btn-eliminar");
-const btnAñadir = document.querySelector("#btn-agregar");
 const inputProducto = document.querySelector("#input-producto");
+const contador = document.querySelector("#contador");
+const buscador = document.querySelector("#buscador");
 
-//Creamos un evento para el boton de añadir
-btnAñadir.addEventListener("click", ()=>{
-    //el texto que este en el input lo vamos a guardar y eliminar los posibles espacios alante y atrás
-    const texto =inputProducto.value.trim();
-    if(texto !== ""){
-        //Si el texto no esta vacío creamos el elemento li y le ponemos el contenido del input
-        let elemLista = document.createElement("li");
-        elemLista.textContent = texto;
-        //a la lista principal le añadimos el elemento que hemos creado
-        lista.append(elemLista);
-        inputProducto.value = "";
-        //Y a su vez lo añadimos al final del array
-        listaCompra.push(texto);
+
+//Añadir y eliminar productos mediante los botones
+//Si se añade con el boton
+btnAdd.addEventListener("click", addProducto);
+
+//Si se añade con el enter
+inputProducto.addEventListener("keydown", (event) =>{
+    if(event.key === "Enter"){
+        addProducto();
     }
 })
-
-//Creamos el evento para el boton de eliminar
+//boton para eliminar
 btnEliminar.addEventListener("click", ()=>{
-    if(listaCompra.length > 0){
-        //Eliminamos el ultimo elemento del array
-        listaCompra.pop();
-        //y tambien eliminamos el ultimo elemento de la lista html que la hemos capturado con anterioridad
-        lista.lastElementChild.remove();
-    }
+    //Eliminamos el último y pintamos la lista
+    listaCompra.pop();
+    pintarLista();
 });
 
+//Buscador que pinta la lista y ya en esa funcion lee el buscador
+buscador.addEventListener("input", pintarLista);
+
+//el primer ejercicio que siempre la pinte cuando se abra
+pintarLista();
 
