@@ -1,3 +1,4 @@
+//---------------------------------FUNCIÓN 1----------------------------------------
 //Esta funcion servira para actualizar el contador cada vez que se haga una modificación
 //Y al estar en la funcion de pintar la lista será mas comodo
 function actualizarContador(){
@@ -5,6 +6,7 @@ function actualizarContador(){
     contador.textContent = `${n} producto/s en la lista`;
 }
 
+//-----------------------------------FUNCION 2--------------------------------------
 //A la función de pintarLista le he pedido ayuda a la ia ya que tenia una estructura muy desorganizada y era imposible
 //hacer el apartado 5... 
 //Apartado 1 Mostrar la lista de la compra como un li dentro de la lista
@@ -32,7 +34,7 @@ function pintarLista(){
     });
         actualizarContador();
 }
-
+//---------------------------------FUNCION 3----------------------------------------
 //Hacemos una función para que añada el producto ya sea con enter o con el boton
 function addProducto(){
     const textoInput = inputProducto.value.trim();
@@ -41,14 +43,16 @@ function addProducto(){
     if(exists){
         alert(`"${textoInput}" ya está en la lista`)
     }else{
+        // SI no a la lista de la compra agregamos el producto del input
         listaCompra.push(textoInput);
+        //Vaciamos el input
         inputProducto.value ="";
         pintarLista();
     }
     
 }
-
-
+//-------------------------------------------------------------------------------------
+// SCRIPT PRINCIPAL
 let listaCompra = ["leche", "pan", "huevos"];
 
 //Aqui guardamos los elementos del DOM
@@ -58,14 +62,16 @@ const btnEliminar = document.querySelector("#btn-eliminar");
 const inputProducto = document.querySelector("#input-producto");
 const contador = document.querySelector("#contador");
 const buscador = document.querySelector("#buscador");
-
+const btnSort = document.querySelector("#btn-ordenar");
 
 //Añadir y eliminar productos mediante los botones
+
 //Si se añade con el boton
 btnAdd.addEventListener("click", addProducto);
 
 //Si se añade con el enter
 inputProducto.addEventListener("keydown", (event) =>{
+    // le decimos que el evento sea pulsar una tecla y si esa tecla es enter añadir producto
     if(event.key === "Enter"){
         addProducto();
     }
@@ -80,6 +86,12 @@ btnEliminar.addEventListener("click", ()=>{
 //Buscador que pinta la lista y ya en esa funcion lee el buscador
 buscador.addEventListener("input", pintarLista);
 
+//Cuando se pulse el boton de ordenar se ordenará alfabeticamente
+btnSort.addEventListener("click", ()=>{
+    //en el sort pasamos una funcion que compare alfabeticamente desde el español como menciona en los apuntes
+    listaCompra.sort((a,b) => a.localeCompare(b,"es"));
+    pintarLista();
+})
 //el primer ejercicio que siempre la pinte cuando se abra
 pintarLista();
 
