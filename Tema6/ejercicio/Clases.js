@@ -55,11 +55,11 @@ class Ordenador {
         //Si es una instancia de ordenador compara los precios y el string a devolver toma diferentes valores
         if(pc instanceof Ordenador){
             if(pc.precio > this.precio){
-                result = "Este es más barato";
+                result = "más barato";
             }else if(pc.precio < this.precio){
-                result = "Este es más caro";
+                result = "más caro";
             }else{
-                result = "Ambos cuestan lo mismo";
+                result = "mismo precio";
             }
         }else{
             result= "Esto no es valido";
@@ -80,6 +80,6 @@ class Portatil extends Ordenador{
     }
 
     toString(){
-        return `${super.toString} . ${this.autonomia}h de autonomía"`;
+        return `${super.toString()} · ${this.autonomia}h de autonomía`;
     }
 }

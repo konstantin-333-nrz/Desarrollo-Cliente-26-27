@@ -1,14 +1,67 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TecnoShop</title>
+  <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-    <header>
-        <h1
-    </header>
-    <script src="Ordenador.js"></script>
+  <header>
+    <h1>TecnoShop</h1>
+    <span id="contadorCabecera">Carrito (0)</span>
+  </header>
+
+  <main>
+    <section id="zonaCatalogo">
+      <div class="barra">
+        <h2>Catálogo</h2>
+        <select id="filtro">
+          <option value="todos">Todos</option>
+          <option value="sobremesa">Sobremesa</option>
+          <option value="portatil">Portátiles</option>
+        </select>
+        <button id="btnOrdenar">Ordenar por precio</button>
+        <button id="btnExportar">Exportar catálogo</button>
+      </div>
+      <div id="catalogo"></div>
+      <pre id="exportacion"></pre>
+    </section>
+
+    <aside>
+      <section class="panel">
+        <h2>Tu carrito</h2>
+        <ul id="listaCarrito"></ul>
+        <p class="total">Total: <span id="total">0 €</span></p>
+        <p id="cantidadCarrito">0 productos</p>
+        <button id="btnVaciar">Vaciar carrito</button>
+      </section>
+
+      <section class="panel">
+        <h2>Nuevo producto</h2>
+        <form id="formProducto" novalidate>
+          <select id="tipo">
+            <option value="sobremesa">Sobremesa</option>
+            <option value="portatil">Portátil</option>
+          </select>
+          <input id="marca" placeholder="Marca *">
+          <input id="modelo" placeholder="Modelo *">
+          <input id="precio" type="number" placeholder="Precio (€) *">
+          <input id="ram" type="number" placeholder="RAM (GB)">
+          <input id="disco" type="number" placeholder="Disco (GB)">
+          <input id="pulgadas" type="number" placeholder="Pulgadas">
+          <input id="autonomia" type="number" placeholder="Autonomía (h)" disabled>
+          <button type="submit">Añadir</button>
+        </form>
+        <p id="mensajeForm"></p>
+      </section>
+    </aside>
+  </main>
+<footer>
+    
+</footer>
+  <!-- Primero las clases y después el código que las usa -->
+  <script src="clases.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
