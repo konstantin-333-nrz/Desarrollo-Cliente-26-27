@@ -83,3 +83,44 @@ class Portatil extends Ordenador{
         return `${super.toString()} · ${this.autonomia}h de autonomía`;
     }
 }
+
+//---------------------------------Apartado 4-----------------------------------
+//Creamos la clase que contendra el carrito de la compra
+class Carrito{
+    //Se guarda privada porque no tiene que ser accesible desde fuera y asi cumplimos con el concepto de encapsulación
+    #productos;
+    //El constructor se encarga de inicializar el array de productos
+    constructor(){
+        this.#productos = [];
+    }
+    //método para añadir un producto al carrito de la compra
+    agregar(producto){
+        if(producto instanceof Ordenador){
+            this.#productos.push(producto);
+        }
+    }
+    //Método que quita un producto del carrito
+    quitar(i){
+        //Quitamos i producto y la cantidad que se va a eliminar en este caso 1
+        this.#productos.splice(i, 1);
+    }
+    //Método que hace que el carrito se vacíe
+    vaciar(){
+        this.#productos.length = 0;
+    }
+
+    //Devuelve una copia del array
+    getProductos(){
+        return [...this.#productos]
+    }
+
+    //Devuelve la cantidad de productos del carrito
+    getCantidad(){
+        return this.#productos.length;
+    }
+
+    //Devuelve el precio total del carrito de la compra
+    getTotal(){
+        return this.#productos.reduce((suma, p) => suma + p.precio, 0);
+    }
+}

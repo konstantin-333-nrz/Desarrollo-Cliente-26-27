@@ -1,0 +1,412 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap");
+
+/* ============ 1. COLORES Y VARIABLES ============ */
+:root {
+  --tinta: #10162f;        /* azul marino casi negro */
+  --cobalto: #3347ff;      /* color principal */
+  --cobalto-claro: #e6e9ff;
+  --ambar: #ffc53d;        /* contador del carrito */
+  --coral: #d93b4a;        /* quitar / errores */
+  --coral-claro: #fde8ea;
+  --fondo: #eef1f8;
+  --blanco: #ffffff;
+  --gris: #5b6280;
+  --borde: #d9deee;
+  --radio: 14px;
+}
+
+/* ============ 2. BASE ============ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--fondo);
+  color: var(--tinta);
+  font-family: "DM Sans", system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+h1, h2, h3 {
+  font-family: "Space Grotesk", "DM Sans", sans-serif;
+  margin: 0;
+  line-height: 1.15;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--cobalto);
+  outline-offset: 2px;
+}
+
+/* ============ 3. CABECERA ============ */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem clamp(1rem, 4vw, 2.5rem);
+  color: var(--blanco);
+  background:
+    radial-gradient(600px 160px at 85% -40%, rgba(51, 71, 255, 0.55), transparent 70%),
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    var(--tinta);
+  background-size: auto, 28px 28px, 28px 28px, auto;
+}
+
+header h1 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+#contadorCabecera {
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  background: var(--ambar);
+  color: var(--tinta);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ============ 4. DISPOSICIÓN GENERAL ============ */
+main {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 2rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 350px;
+  gap: 1.75rem;
+  flex: 1;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-self: start;
+  position: sticky;
+  top: 5.5rem;
+}
+
+/* ============ 5. BOTONES ============ */
+button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 10px;
+  padding: 0.6rem 1.1rem;
+  background: var(--cobalto);
+  color: var(--blanco);
+  font-weight: 700;
+  transition: background 0.15s, transform 0.15s;
+}
+
+button:hover {
+  background: #1f33e0;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+/* ============ 6. BARRA DEL CATÁLOGO (filtro y orden) ============ */
+.barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.barra h2 {
+  margin-right: auto;
+  font-size: 1.7rem;
+}
+
+.barra button {
+  background: var(--blanco);
+  color: var(--tinta);
+  border: 1.5px solid var(--borde);
+}
+
+.barra button:hover {
+  background: var(--cobalto-claro);
+  border-color: var(--cobalto);
+}
+
+select {
+  appearance: none;
+  padding: 0.6rem 2.3rem 0.6rem 0.9rem;
+  border: 1.5px solid var(--borde);
+  border-radius: 10px;
+  background: var(--blanco)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2310162f' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")
+    no-repeat right 0.9rem center;
+  color: var(--tinta);
+  cursor: pointer;
+}
+
+/* ============ 7. TARJETAS DEL CATÁLOGO ============ */
+#contenedorPrincipal {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.1rem;
+}
+
+#contenedorPrincipal article {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "tipo  tipo"
+    "title title"
+    "info  info"
+    "price add";
+  align-items: end;
+  row-gap: 0.55rem;
+  padding: 1.25rem;
+  background: var(--blanco);
+  border: 1.5px solid var(--borde);
+  border-top: 5px solid var(--cobalto);
+  border-radius: var(--radio);
+  transition: border-color 0.15s;
+}
+
+#contenedorPrincipal article:hover {
+  border-color: var(--cobalto);
+}
+
+#contenedorPrincipal article span {
+  grid-area: tipo;
+  justify-self: start;
+  padding: 0.15rem 0.7rem;
+  border-radius: 999px;
+  background: var(--cobalto-claro);
+  color: #2437d6;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* Opcional: si en el JS le pones tipo.className = "portatil" o "sobremesa" */
+#contenedorPrincipal article span.sobremesa {
+  background: #fff1cc;
+  color: #7a5200;
+}
+
+#contenedorPrincipal article h3 {
+  grid-area: title;
+  font-size: 1.3rem;
+}
+
+#contenedorPrincipal article p {
+  grid-area: info;
+  margin: 0 0 0.75rem;
+  color: var(--gris);
+  font-size: 0.95rem;
+}
+
+#contenedorPrincipal article strong {
+  grid-area: price;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+}
+
+#contenedorPrincipal article button {
+  grid-area: add;
+}
+
+/* ============ 8. EXPORTAR (apartado 7) ============ */
+pre#exportacion {
+  margin: 1.25rem 0 0;
+  padding: 1rem;
+  max-height: 320px;
+  overflow: auto;
+  border-radius: var(--radio);
+  background: var(--tinta);
+  color: #cdd4ff;
+  font-size: 0.85rem;
+}
+
+pre#exportacion:empty {
+  display: none;
+}
+
+/* ============ 9. PANELES LATERALES ============ */
+.panel {
+  padding: 1.25rem;
+  background: var(--blanco);
+  border: 1.5px solid var(--borde);
+  border-radius: var(--radio);
+}
+
+.panel h2 {
+  margin-bottom: 0.9rem;
+  font-size: 1.25rem;
+}
+
+/* ---- Carrito ---- */
+#listaCarrito {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#listaCarrito:empty::before {
+  content: "Aún no has añadido nada.";
+  display: block;
+  padding: 0.5rem 0 0.9rem;
+  color: var(--gris);
+}
+
+#listaCarrito li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px dashed var(--borde);
+  font-size: 0.95rem;
+}
+
+#listaCarrito li button {
+  flex-shrink: 0;
+  padding: 0.3rem 0.7rem;
+  background: var(--coral-claro);
+  color: var(--coral);
+  font-size: 0.85rem;
+}
+
+#listaCarrito li button:hover {
+  background: var(--coral);
+  color: var(--blanco);
+}
+
+.total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 1rem 0 0.15rem;
+  font-weight: 700;
+}
+
+#total {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.7rem;
+}
+
+#cantidadCarrito {
+  margin: 0 0 1rem;
+  color: var(--gris);
+  font-size: 0.9rem;
+}
+
+#btnVaciar {
+  width: 100%;
+  background: transparent;
+  color: var(--tinta);
+  border: 1.5px solid var(--borde);
+}
+
+#btnVaciar:hover {
+  background: var(--coral-claro);
+  border-color: var(--coral);
+  color: var(--coral);
+}
+
+/* ---- Formulario ---- */
+#formProducto {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+#formProducto #tipo,
+#formProducto button {
+  grid-column: 1 / -1;
+}
+
+#formProducto input {
+  width: 100%;
+  min-width: 0;
+  padding: 0.6rem 0.75rem;
+  border: 1.5px solid var(--borde);
+  border-radius: 10px;
+  background: var(--blanco);
+  color: var(--tinta);
+}
+
+#formProducto input:focus {
+  border-color: var(--cobalto);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--cobalto-claro);
+}
+
+#formProducto input:disabled {
+  background: repeating-linear-gradient(
+    135deg,
+    #f1f3f9,
+    #f1f3f9 6px,
+    #e8ebf4 6px,
+    #e8ebf4 12px
+  );
+  cursor: not-allowed;
+}
+
+#mensajeForm {
+  margin: 0.75rem 0 0;
+  color: var(--coral);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+#mensajeForm:empty {
+  display: none;
+}
+
+/* ============ 10. PIE ============ */
+footer {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  color: var(--gris);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--borde);
+}
+
+/* ============ 11. MÓVIL Y TABLET ============ */
+@media (max-width: 920px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+
+  aside {
+    position: static;
+  }
+}
+
+@media (max-width: 520px) {
+  .barra h2 {
+    flex-basis: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
