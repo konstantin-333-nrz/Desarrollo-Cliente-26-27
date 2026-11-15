@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copa Pixel 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="fondo" aria-hidden="true"></div>
+
+  <header class="cabecera">
+    <div>
+      <p class="marca-etiqueta">Votación oficial</p>
+      <h1 class="titulo" id="titulo">Copa Pixel 2026</h1>
+    </div>
+    <p class="juego">Juego: <strong id="juego">Street Fighter VI</strong></p>
+  </header>
+
+  <main class="contenedor">
+
+    <section class="panel-control" aria-labelledby="etiqueta-tiempo">
+      <div class="tiempo">
+        <p class="tiempo-etiqueta" id="etiqueta-tiempo">Tiempo restante de votación</p>
+        <p class="cronometro" id="cronometro">03:00</p>
+        <p class="estado" id="estado" aria-live="polite">Pulsa «Iniciar torneo» para abrir la votación.</p>
+        <p class="aviso" id="aviso" aria-live="polite" hidden>¡Votación cerrada!</p>
+      </div>
+
+      <div class="acciones">
+        <button type="button" class="boton boton-principal" id="btn-iniciar">Iniciar torneo</button>
+        <button type="button" class="boton boton-secundario" id="btn-resetear">Resetear torneo</button>
+      </div>
+    </section>
+
+    <section class="participantes" id="participantes" aria-label="Participantes">
+
+      <article class="tarjeta" data-indice="0">
+        <div class="tarjeta-cabecera">
+          <h2 class="nombre">Ryu Master</h2>
+          <span class="pais" title="País">JP</span>
+        </div>
+        <div class="puntos">
+          <span class="numero-puntos">2400</span>
+          <span class="etiqueta-puntos">puntos</span>
+        </div>
+        <button type="button" class="boton boton-votar" data-indice="0" disabled>Votar (+50)</button>
+      </article>
+
+      <article class="tarjeta" data-indice="1">
+        <div class="tarjeta-cabecera">
+          <h2 class="nombre">LuciaFire</h2>
+          <span class="pais" title="País">ES</span>
+        </div>
+        <div class="puntos">
+          <span class="numero-puntos">3100</span>
+          <span class="etiqueta-puntos">puntos</span>
+        </div>
+        <button type="button" class="boton boton-votar" data-indice="1" disabled>Votar (+50)</button>
+      </article>
+
+      <article class="tarjeta" data-indice="2">
+        <div class="tarjeta-cabecera">
+          <h2 class="nombre">DragonKick99</h2>
+          <span class="pais" title="País">MX</span>
+        </div>
+        <div class="puntos">
+          <span class="numero-puntos">1850</span>
+          <span class="etiqueta-puntos">puntos</span>
+        </div>
+        <button type="button" class="boton boton-votar" data-indice="2" disabled>Votar (+50)</button>
+      </article>
+
+      <article class="tarjeta" data-indice="3">
+        <div class="tarjeta-cabecera">
+          <h2 class="nombre">ZeroCool</h2>
+          <span class="pais" title="País">US</span>
+        </div>
+        <div class="puntos">
+          <span class="numero-puntos">2950</span>
+          <span class="etiqueta-puntos">puntos</span>
+        </div>
+        <button type="button" class="boton boton-votar" data-indice="3" disabled>Votar (+50)</button>
+      </article>
+
+    </section>
+
+    <section class="ganador" id="ganador" hidden>
+      <p class="ganador-etiqueta">Ganador de la votación</p>
+      <p class="ganador-nombre" id="nombre-ganador">Sin ganador</p>
+    </section>
+
+  </main>
+</body>
+</html>
