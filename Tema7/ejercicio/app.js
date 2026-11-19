@@ -1,3 +1,18 @@
+//Funcion para ir restando el numero de segundos
+function restarSegundos (tiempo){
+    let minutos = Number(tiempo.substring(0,2));
+    let segundos = Number(tiempo.substring(3));
+
+    if(segundos !== 0){
+        segundos -= 1;
+    }else{
+        minutos -= 1
+        segundos = 59
+    }
+    texto =  `${minutos}:${segundos}`;
+    return texto
+}
+
 const datosIniciales = {
     nombre: "Copa Pixel 2026",
     duracionSegundos: 180,
@@ -13,6 +28,7 @@ const nombresTarjeta = document.querySelectorAll(".nombre");
 const paisTarjeta = document.querySelectorAll(".pais");
 const puntuacionTarjeta = document.querySelectorAll(".etiqueta-puntos");
 
+
 //Imprimir los nombres el pais y la puntuación  de los participantes
 for(let i = 0;i < nombresTarjeta.length; i++){
     nombresTarjeta[i].textContent = datosIniciales.participantes[i].nombre;
@@ -21,7 +37,7 @@ for(let i = 0;i < nombresTarjeta.length; i++){
 }
 
 const botonesVotar = document.querySelectorAll(".boton-votar");
-
+//
 botonesVotar.forEach((b,i)=>{
     b.addEventListener("click", ()=>{
         datosIniciales.participantes[i].puntos += 50;
@@ -29,12 +45,10 @@ botonesVotar.forEach((b,i)=>{
     });
 });
 
-//FUNCIONAMIENTO DEL CONTADOR
+const btnInicio = document.querySelector("#btn-iniciar");
 const cronometro = document.querySelector("#cronometro");
-const estado = document.querySelector("#estado");
-const aviso = document.querySelector("#aviso");
-const btnIniciar = document.querySelector("btn-iniciar");
 
-let tiempoRestante = datosIniciales.duracionSegundos;
-let intervalo = null;
-
+btnInicio.addEventListener("click", ()=>{
+    cronometro.textContent = "02:59";
+    
+});
