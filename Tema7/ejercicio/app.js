@@ -20,13 +20,31 @@ const datosIniciales = {
 const nombresTarjeta = document.querySelectorAll(".nombre");
 const paisTarjeta = document.querySelectorAll(".pais");
 const puntuacionTarjeta = document.querySelectorAll(".etiqueta-puntos");
+//Esta variable guarda una copia del objeto 
 let copiaParticipantes = JSON.parse(JSON.stringify(datosIniciales.participantes));
+
+const guardados = localStorage.getItem("participantes");
+if(guardados !== null){
+    copiaParticipantes = JSON.parse(guardados);
+}
+
+function guardarPuntos(){
+    localStorage.setItem("participantes", JSON.stringify(copiaParticipantes));
+}
+
+function pintarPuntos(){
+    for(let i = 0; i < puntuacionTarjeta.length; i++){
+        puntuacionTarjeta[i].textContent = `Puntos: ${copiaParticipantes[i].puntos}`;
+    }
+}
 
 //Imprimir los nombres el pais y la puntuación  de los participantes
 for(let i = 0;i < nombresTarjeta.length; i++){
-    nombresTarjeta[i].textContent = copiaParticipantes[i].name;
-    paisTarjeta[i].textContent = copia.copiaParticipantes[i].pais
+    nombresTarjeta[i].textContent = copiaParticipantes[i].nombre;
+    paisTarjeta[i].textContent = copiaParticipantes[i].pais;
 }
+pintarPuntos();
+
 //CAPTURAMOS LOS BOTONES DE VOTO
 const botonesVotar = document.querySelectorAll(".boton-votar");
 
@@ -39,7 +57,8 @@ botonesVotar.forEach(b=>{
 botonesVotar.forEach((b,i)=>{
     b.addEventListener("click", ()=>{
         copiaParticipantes[i].puntos += 50;
-        puntosTarjeta[i].textContent = `Puntos: ${copiaParticipantes[i].puntos}`
+        guardarPuntos();
+        pintarPuntos();
     });
 });
 
@@ -49,11 +68,12 @@ const cronometro = document.querySelector("#cronometro");
 let segundosTotales = datosIniciales.duracionSegundos;
 let intervalo=null;
 
+cronometro.textContent = devolverTiempo(segundosTotales);
 
 btnInicio.addEventListener("click", ()=>{
-        intervalo = setInterval(()=>{
-        cronometro.textContent = devolverTiempo(segundosTotales);
+    intervalo = setInterval(()=>{
         segundosTotales--;
+        cronometro.textContent = devolverTiempo(segundosTotales);
 
         if(segundosTotales === 0){
             clearInterval(intervalo);
@@ -69,7 +89,6 @@ btnInicio.addEventListener("click", ()=>{
     botonesVotar.forEach(b=>{
         b.disabled = false;
     })
-    
 });
 
 btnRestet.addEventListener("click", ()=>{
@@ -80,4 +99,7 @@ btnRestet.addEventListener("click", ()=>{
     botonesVotar.forEach(b=>{
         b.disabled =true;
     });
+    copiaParticipantes = JSON.parse(JSON.stringify(datosIniciales.participantes));
+    guardarPuntos();
+    pintarPuntos();
 });
