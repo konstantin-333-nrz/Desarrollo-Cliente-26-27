@@ -5,6 +5,15 @@ function devolverTiempo(s){
     return `${String(min).padStart(2, "0")}:${String(seg).padStart(2, "0")}`
 }
 
+function guardarPuntos(){
+    localStorage.setItem("participantes", JSON.stringify(copiaParticipantes));
+}
+function pintarPuntos(){
+    for(let i = 0; i < puntuacionTarjeta.length; i++){
+        puntuacionTarjeta[i].textContent = `Puntos: ${copiaParticipantes[i].puntos}`;
+    }
+}
+
 //DATOS DEL EJERCICIO
 const datosIniciales = {
     nombre: "Copa Pixel 2026",
@@ -26,16 +35,6 @@ let copiaParticipantes = JSON.parse(JSON.stringify(datosIniciales.participantes)
 const guardados = localStorage.getItem("participantes");
 if(guardados !== null){
     copiaParticipantes = JSON.parse(guardados);
-}
-
-function guardarPuntos(){
-    localStorage.setItem("participantes", JSON.stringify(copiaParticipantes));
-}
-
-function pintarPuntos(){
-    for(let i = 0; i < puntuacionTarjeta.length; i++){
-        puntuacionTarjeta[i].textContent = `Puntos: ${copiaParticipantes[i].puntos}`;
-    }
 }
 
 //Imprimir los nombres el pais y la puntuación  de los participantes
